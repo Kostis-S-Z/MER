@@ -1,28 +1,21 @@
-# Meta-Experience Replay (MER)
+# Continual Meta Learning Experiments
 
-Source code for the paper "Learning to Learn without Forgetting by Maximizing Transfer and Minimizing Interference".
+#### Master branch is in the process of updating for Python 3.7+ and torch 1.4+
 
-Link: https://openreview.net/pdf?id=B1gTShAct7
+#### Legacy branch works with Python 3.5.2 and torch==0.3.1
 
-Reference:
-```
-@inproceedings{MER,
-    title={Learning to Learn without Forgetting by Maximizing Transfer and Minimizing Interference},   
-    author={Riemer, Matthew and Cases, Ignacio and Ajemian, Robert and Liu, Miao and Rish, Irina and Tu, Yuhai and Tesauro, Gerald},    
-    booktitle={In International Conference on Learning Representations (ICLR)},    
-    year={2019}   
-}
-```
+_This repo is built on top of Meta-Experience Replay (MER): https://github.com/mattriemer/MER (which itself is a fork of GEM https://github.com/facebookresearch/GradientEpisodicMemory)_
 
-This project is a fork of the GEM project https://github.com/facebookresearch/GradientEpisodicMemory in order to reproduce baselines from their paper. These baselines have been copied into the model/ directory of this repository. Our output and logging mechanisms for all models follow the same format used in the GEM project. 
+----
 
-# Available Datasets
+
+## Available Datasets
 
 The code in this repository should work on the variants of MNIST used in the experiments. This includes Rotations, Permutations, and Many Permutations. It would need to be slightly extended to be applied to other interesting continual learning benchmarks like CIFAR-100 or Omniglot.
 
-The original MNIST database is available at http://yann.lecun.com/exdb/mnist/ and interface for generating your own MNIST variants is provided as part of the GEM project https://github.com/facebookresearch/GradientEpisodicMemory/tree/master/data. To maximize reproducibility, we have provided an interface for directly downloading the dataset versions used in our experiments.
+The original MNIST database is available at http://yann.lecun.com/exdb/mnist/ and interface for generating your own MNIST variants is provided as part of the GEM project https://github.com/facebookresearch/GradientEpisodicMemory/tree/master/data.
 
-## Basic Setup
+### Basic Setup
 
 As a first step to get up and running, clone this git repository and navigate into the root directory of your local version of the repository. To get started, please install the requirements inside your environment.
 
@@ -46,14 +39,11 @@ Within the `mer` environment, install PyTorch and Cython using conda as follows:
 
 ```conda install cython```
 
-_For python 3.6+, to install quadprog, first do:_
-```sudo apt install gcc build-essential```
-
 and then install the rest of the requirements using the following command:
 
 ```pip install --user -r requirements.txt```
 
-## Getting the datasets
+### Getting the datasets
 
 The first step is to download and uncompress all three datasets (30 GB of storage needed) execute the following command:
 
@@ -71,7 +61,7 @@ For just MNIST Many Permutations (21 GB) execute:
 
 ```python get_data.py manypermutations```
 
-# Getting Started
+## Getting Started
 
 In mer_examples.sh see examples of how to run variants of MER from the paper and baseline models from the experiments. We make sure first that this script is excutable:
 
@@ -89,9 +79,7 @@ export ROT="--n_layers 2 --n_hiddens 100 --data_path data/ --save_path results/ 
 python3 main.py $ROT --model meralg1 --lr 0.03 --beta 0.03 --gamma 1.0 --memories 5120 --replay_batch_size 100 --batches_per_example 10
 ```
 
-# Available Models
-
-In the model/ directory we have provided various models that were used for experiments on varients of MNIST in the paper. These models include:
+## Available Models
 
 - Online Learning (online)
 
@@ -113,10 +101,3 @@ In the model/ directory we have provided various models that were used for exper
 
 - Meta-Experience Replay Algorithm 7 (meralg7)
 
-# System Requirements
-
-The repository has been developed for Python 3.5.2 using PyTorch 0.3.1.
-
-# Reproducing Our Experiments 
-
-We have conducted comprehensive experiments detailed in Appendix M of our paper to make sure that our results are reproducible across runs regardless of the machine and random seed. You should be able to reproduce these experiments using the provided mer_examples.sh script.
