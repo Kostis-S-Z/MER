@@ -1,9 +1,5 @@
 # Continual Meta Learning Experiments
 
-#### Master branch is in the process of updating for Python 3.7+ and torch 1.4+
-
-#### Legacy branch works with Python 3.5.2 and torch==0.3.1
-
 _This repo is built on top of Meta-Experience Replay (MER): https://github.com/mattriemer/MER (which itself is a fork of GEM https://github.com/facebookresearch/GradientEpisodicMemory)_
 
 ----
@@ -17,30 +13,12 @@ The original MNIST database is available at http://yann.lecun.com/exdb/mnist/ an
 
 ### Basic Setup
 
-As a first step to get up and running, clone this git repository and navigate into the root directory of your local version of the repository. To get started, please install the requirements inside your environment.
+Create a virtual environment (either with Python 3 virtualenv or anaconda)
 
-If you don't have an environment, we recommend that you create one (using [conda](http://anaconda.org)). The following instructions will guide you:
+Install dependencies for Cython (only for GEM code which uses quadprog)
+```sudo apt install gcc build-essential```
 
-Install `conda` and type
-
-```conda create --name mer python=3.5```
-
-This will create a conda environment (an isolated workplace) in which we can install the right versions of the software. Then, activate the environment:
-
-```source activate mer```
-
-or
-
-```conda activate mer```
-
-Within the `mer` environment, install PyTorch and Cython using conda as follows:
-
-```conda install pytorch=0.3.1 -c pytorch```
-
-```conda install cython```
-
-and then install the rest of the requirements using the following command:
-
+then simply install all other dependencies
 ```pip install --user -r requirements.txt```
 
 ### Getting the datasets
